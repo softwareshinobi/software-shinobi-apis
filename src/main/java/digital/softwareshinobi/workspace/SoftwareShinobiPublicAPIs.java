@@ -8,6 +8,8 @@ public class SoftwareShinobiPublicAPIs {
 
     public static void main(final String[] commandLineArguments) {
 
+        System.out.println("launch > SoftwareShinobiPublicAPIs");
+       
         SpringApplication.run(SoftwareShinobiPublicAPIs.class, commandLineArguments);
 
     }
