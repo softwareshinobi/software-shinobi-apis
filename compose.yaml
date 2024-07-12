@@ -1,0 +1,181 @@
+services:
+
+##########################################
+##
+## network infrastructure
+##
+##########################################
+
+    software-shinobi-public-apis-proxy:
+
+        container_name: software-shinobi-public-apis-proxy
+
+        image: nginxproxy/nginx-proxy
+
+        restart: unless-stopped
+
+        ports:
+
+            - "80:80"
+
+            - "443:443"
+
+        volumes:
+
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+
+            - /var/docker/nginx/html:/usr/share/nginx/html
+
+            - /var/docker/nginx/certs:/etc/nginx/certs
+
+            - /var/docker/nginx/vhost:/etc/nginx/vhost.d
+
+        logging:
+
+            options:
+
+                max-size: "10m"
+
+                max-file: "3"
+
+    software-shinobi-public-apis-letsencrypt:
+
+        container_name: software-shinobi-public-apis-letsencrypt
+
+        image: jrcs/letsencrypt-nginx-proxy-companion
+
+        restart: unless-stopped
+
+        volumes_from:
+
+            - software-shinobi-public-apis-proxy
+
+        volumes:
+
+            - /var/run/docker.sock:/var/run/docker.sock
+
+            - /var/docker/nginx/acme:/etc/acme.sh
+
+        environment:
+
+            DEFAULT_EMAIL: workspace@valorantsoftware.digital
+
+##########################################
+##
+## storage infrastructure
+##
+##########################################
+
+    software-shinobi-public-apis-database:
+
+        container_name: software-shinobi-public-apis-database
+
+        image: mariadb
+
+        volumes:
+
+            - .volumes/mariadb:/var/lib/mysql
+
+        ports:
+    
+            - "3306:3306"
+
+        environment:
+
+            MYSQL_ROOT_PASSWORD: aggiepride
+
+            MYSQL_DATABASE: shinobipublicapis
+
+            MYSQL_USER: shinobipublicapis
+
+            MYSQL_PASSWORD: shinobipublicapis
+
+    software-shinobi-public-apis-phpmyadmin:
+
+        container_name: software-shinobi-public-apis-phpmyadmin
+
+        image: beeyev/phpmyadmin-lightweight
+
+        depends_on:
+
+           - software-shinobi-public-apis-database
+
+        links:
+
+           - software-shinobi-public-apis-database
+
+        ports:
+
+            - "36080:80"
+
+        environment:
+
+            PMA_HOST: software-shinobi-public-apis-database
+
+            VIRTUAL_HOST: database.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: database.softwareshinobi.digital
+
+##########################################
+##
+## API Server & Documentation
+##
+##########################################
+
+    software-shinobi-public-apis-server:
+
+        container_name: software-shinobi-public-apis-server
+        
+        image: softwareshinobi/software-shinobi-public-apis-server
+
+        depends_on:
+
+           - software-shinobi-public-apis-database
+
+        build: 
+
+            context: .
+
+            dockerfile: Dockerfile
+    
+        restart: always
+
+        ports:
+            
+            - "24888:8888"
+            
+        environment:
+
+            DB_HOST: software-shinobi-public-apis-database
+
+            DB_NAME: shinobipublicapis
+
+            DB_USER: shinobipublicapis
+
+            DB_PASS: shinobipublicapis
+
+            VIRTUAL_HOST: apis.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: apis.softwareshinobi.digital
+
+    software-shinobi-public-apis-docs:
+
+        container_name: software-shinobi-public-apis-docs
+
+        image: softwareshinobi/software-shinobi-public-apis-docs
+
+        build: 
+
+            context: docs
+
+            dockerfile: Dockerfile
+
+        ports:
+
+            - "24080:80"
+
+        environment:
+
+            VIRTUAL_HOST: docs.apis.softwareshinobi.digital
+
+            LETSENCRYPT_HOST: docs.apis.softwareshinobi.digital
