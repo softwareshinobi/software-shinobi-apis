@@ -8,42 +8,42 @@ the following APIs have been built and are running on @aventador.
 
 ## live
 
-* intention endpoint
+    * intention endpoint
 
-* valorant worksace task and clients
+    * valorant worksace task and clients
 
-* fullcalendar calendar
+    * fullcalendar calendar
 
-* article magic text ops
+    * article magic text ops
 
-* unsubscribe endpoint
+    * unsubscribe endpoint
 
-* cyberpanel
+    * cyberpanel
 
-## in progress
+    * stubbed sports scores
 
-* dwity calendar
+    * stubbed real estate data
 
-## coming next
-
-* stubbed sports scores
-
-* stubbed real estate data
-
-* stubbed mental health provider
-
-## coming soon
+    * stubbed mental health provider
 
 * metric conversions
 
-    * feet and inches to meters
+    * feet and inches to meters (and reverse)
 
-    * liqud cups to milliliters
+    * liqud cups to milliliters (and reverse)
 
-    * kg to lbs
+    * kg to lbs (and reverse)
 
-    * c to f
+    * c to f (and reverse)
 
     * COP / USD exchange rate and calculator
 
-* forex rates and conversions
+## in progress
+
+    * dwity calendar
+
+## coming next
+
+## coming soon
+
+
