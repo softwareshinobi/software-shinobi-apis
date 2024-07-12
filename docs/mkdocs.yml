@@ -1,7 +1,7 @@
 
 docs_dir: docs
 
-site_name: Docs / Valorant Digital Scrum
+site_name: The Software Shinobi Public APIs
 
 theme:
 
@@ -26,7 +26,7 @@ theme:
     ##     spacelab, superhero, united, yeti 
     ##
         
-    name: material
+    name: journal
     
     ## 
     ## you can alternate colors for the navigation header.
