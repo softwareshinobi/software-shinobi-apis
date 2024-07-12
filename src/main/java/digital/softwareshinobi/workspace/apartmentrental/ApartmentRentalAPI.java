@@ -44,11 +44,22 @@ public class ApartmentRentalAPI {
             this.rent = rent;
         }
 
-        @Override
-        public String toString() {
+        
+        public String detail() {
             return "Unit Number: " + unitNumber + "\n" +
                    "Status: " + status + "\n" +
                    "Rent: $" + rent;
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            sb.append("{");
+            sb.append("unitNumber=").append(unitNumber);
+            sb.append(", status=").append(status);
+            sb.append(", rent=").append(rent);
+            sb.append('}');
+            return sb.toString();
         }
     }
 }
