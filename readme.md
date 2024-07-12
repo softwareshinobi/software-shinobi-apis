@@ -38,12 +38,16 @@ the following APIs have been built and are running on @aventador.
 
     * COP / USD exchange rate and calculator
 
+    * dwity calendar
+
 ## in progress
 
-    * dwity calendar
+--
 
 ## coming next
 
+--
+
 ## coming soon
 
-
+--
