@@ -6,23 +6,27 @@ the software shinobi public apis are up.
 
 the following APIs have been built and are running on @aventador.
 
-## in progress
+## live
+
+* intention endpoint
 
 * valorant worksace task and clients
 
-## coming next
+* fullcalendar calendar
+
+## in progress
 
 * article magic text ops
 
 * dwity calendar
 
-* intention endpoint
-
-## coming soon
+## coming next
 
 * unsubscribe endpoint
 
 * cyberpanel
+
+## coming soon
 
 * metric conversions
 
