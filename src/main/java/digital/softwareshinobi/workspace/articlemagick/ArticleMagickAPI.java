@@ -1,48 +1,39 @@
 package digital.softwareshinobi.workspace.articlemagick;
 
-import digital.softwareshinobi.workspace.articlemagick.SpecialTextFormattingUtility;
-import digital.softwareshinobi.workspace.articlemagick.TextWorkerUtility;
 import java.util.Map;
 import java.util.regex.Pattern;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-@RequestMapping("")
-public class ArticleMagickController {
+@RequestMapping("article-magick")
+public class ArticleMagickAPI {
 
-    public ArticleMagickController() {
+    public ArticleMagickAPI() {
 
         System.out.println();
         System.out.println("##");
-        System.out.println("## init > Article Magick Controller");
+        System.out.println("## init > Article Magick TextOps API");
         System.out.println("##");
         System.out.println();
 
     }
 
     @GetMapping("")
-    public String landing1() {
+    public String landing() {
 
         return "Article Magick API";
 
     }
 
-    @GetMapping("/")
-    public String landing2() {
-
-        return "Article Magick API";
-
-    }
-
-    @GetMapping("/health")
+    @GetMapping("health")
     public String health() {
 
         return "OK";
 
     }
 
-    @PostMapping("/simple-format")
+    @PostMapping("simple-format")
     public String simpleTextFormat(@RequestBody Map requestPayLoad) {
 
         System.out.println("enter > simpleTextFormat()");
@@ -65,7 +56,7 @@ public class ArticleMagickController {
 
     }
 
-    @PostMapping("/calculate-similarity")
+    @PostMapping("calculate-similarity")
     public Double calculateTextSimilarityPercentage(@RequestBody Map requestPayLoad) {
 
         System.out.println("enter > calculateTextSimilarityPercentage()");
@@ -95,7 +86,7 @@ public class ArticleMagickController {
 
     }
 
-    @PostMapping("/convert-sentence-to-permalink")
+    @PostMapping("convert-sentence-to-permalink")
     public String convertToPermalink(@RequestBody final String textToConvert) {
 
         System.out.println("enter > convert-sentence-to-permalink");
@@ -110,7 +101,7 @@ public class ArticleMagickController {
 
     }
 
-    @PostMapping("/convert-permalink-to-sentence")
+    @PostMapping("convert-permalink-to-sentence")
     public String convertFromPermalink(@RequestBody final String textToConvert) {
 
         System.out.println("enter > convert-permalink-to-sentence");
